@@ -3,17 +3,18 @@
 def is_paired(input_string):
     d = dict(zip('[{(', ']})'))
     s = []
-    for symb in input_string:
-        if symb in d.keys():
-           s.append(symb)
-        if symb in d.values():
+
+    for bracket in input_string:
+        if bracket in d.keys():
+           s.append(bracket)
+
+        elif bracket in d.values():
             if not s:
                 return False
 
-        if s[-1] == d(symb):
-            s.pop()
-        else:
-            return False
+            current_bracket = s.pop()
+            if d[current_bracket] != bracket:
+                return False
 
     return not s
         
